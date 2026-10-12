@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-10-12T20:02:12.304208",
+  "train_samples": 1690,
+  "test_samples": 423,
+  "split_method": "Chronological (80/20 No-Leakage Split)",
+  "solar_forecast": {
+    "model_type": "GradientBoostingRegressor",
+    "features": [
+      "hour",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week",
+      "dayofweek_sin",
+      "dayofweek_cos",
+      "is_weekend",
+      "ambient_temp_c",
+      "irradiance_wm2",
+      "cloud_cover_pct",
+      "solar_lag_1h",
+      "solar_lag_24h",
+      "solar_lag_48h",
+      "solar_rolling_mean_24h"
+    ],
+    "mae_kw": 0.075,
+    "rmse_kw": 0.131,
+    "r2_score": 1.0,
+    "baseline_mae_kw": 1.217,
+    "baseline_rmse_kw": 2.414,
+    "mae_reduction_pct": 93.8
+  },
+  "demand_forecast": {
+    "model_type": "GradientBoostingRegressor",
+    "features": [
+      "hour",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week",
+      "dayofweek_sin",
+      "dayofweek_cos",
+      "is_weekend",
+      "ambient_temp_c",
+      "demand_lag_1h",
+      "demand_lag_24h",
+      "demand_lag_48h",
+      "demand_rolling_mean_24h"
+    ],
+    "mae_kw": 0.525,
+    "rmse_kw": 0.638,
+    "r2_score": 0.958,
+    "baseline_mae_kw": 0.869,
+    "baseline_rmse_kw": 1.13,
+    "mae_reduction_pct": 39.6
+  },
+  "anomaly_detection": {
+    "model_type": "IsolationForest",
+    "features": [
+      "solar_kw",
+      "demand_kw",
+      "battery_soc",
+      "battery_power_kw",
+      "ambient_temp_c",
+      "grid_import_kw"
+    ],
+    "contamination": 0.04,
+    "test_evaluation_samples": 336,
+    "precision": 0.214,
+    "recall": 0.231,
+    "f1_score": 0.222,
+    "true_positives": 3,
+    "false_positives": 11,
+    "true_negatives": 312,
+    "false_negatives": 10
+  }
+}

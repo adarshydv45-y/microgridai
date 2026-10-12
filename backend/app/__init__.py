@@ -1,0 +1,1 @@
+"""MicrogridAI backend package"""
