@@ -1,27 +1,31 @@
 import React from 'react';
-import { AlertTriangle, Info, CheckCircle, ShieldAlert } from 'lucide-react';
+import { AlertTriangle, Info, CheckCircle2, ShieldAlert } from 'lucide-react';
 
-export function AlertBanner({ type = 'INFO', title, message, action, onClose }) {
+export function AlertBanner({ type = 'INFO', title, message, action }) {
   const configs = {
     INFO: {
-      bg: 'bg-cyan-950/40 border-cyan-500/30 text-cyan-200',
+      container:
+        'bg-sky-50/80 border-sky-200 text-sky-900 dark:bg-sky-950/30 dark:border-sky-800/60 dark:text-sky-200',
       icon: Info,
-      iconColor: 'text-electric-cyan',
+      iconColor: 'text-sky-600 dark:text-sky-400',
     },
     WARNING: {
-      bg: 'bg-amber-950/40 border-amber-500/30 text-amber-200',
+      container:
+        'bg-amber-50/80 border-amber-200 text-amber-900 dark:bg-amber-950/30 dark:border-amber-800/60 dark:text-amber-200',
       icon: AlertTriangle,
-      iconColor: 'text-amber-400',
+      iconColor: 'text-amber-600 dark:text-amber-400',
     },
     ALERT: {
-      bg: 'bg-rose-950/40 border-rose-500/30 text-rose-200',
+      container:
+        'bg-rose-50/80 border-rose-200 text-rose-900 dark:bg-rose-950/30 dark:border-rose-800/60 dark:text-rose-200',
       icon: ShieldAlert,
-      iconColor: 'text-rose-400',
+      iconColor: 'text-rose-600 dark:text-rose-400',
     },
     SUCCESS: {
-      bg: 'bg-emerald-950/40 border-emerald-500/30 text-emerald-200',
-      icon: CheckCircle,
-      iconColor: 'text-electric-emerald',
+      container:
+        'bg-emerald-50/80 border-emerald-200 text-emerald-900 dark:bg-emerald-950/30 dark:border-emerald-800/60 dark:text-emerald-200',
+      icon: CheckCircle2,
+      iconColor: 'text-emerald-600 dark:text-emerald-400',
     },
   };
 
@@ -29,12 +33,14 @@ export function AlertBanner({ type = 'INFO', title, message, action, onClose }) 
   const Icon = style.icon;
 
   return (
-    <div className={`flex items-start justify-between gap-3 p-3.5 rounded-lg border backdrop-blur-sm ${style.bg}`}>
-      <div className="flex items-start gap-3">
-        <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${style.iconColor}`} />
-        <div className="text-xs">
+    <div
+      className={`flex items-start justify-between gap-3 p-3.5 rounded-xl border text-xs transition-colors ${style.container}`}
+    >
+      <div className="flex items-start gap-2.5">
+        <Icon className={`w-4 h-4 flex-shrink-0 mt-0.5 ${style.iconColor}`} />
+        <div>
           {title && <span className="font-semibold block mb-0.5">{title}</span>}
-          <span className="opacity-90">{message}</span>
+          <span className="opacity-95 leading-relaxed">{message}</span>
         </div>
       </div>
 

@@ -1,30 +1,39 @@
 import React from 'react';
 
-export function StatusBadge({ status, size = 'sm', pulse = true }) {
+export function StatusBadge({ status, size = 'sm', pulse = false }) {
   const norm = (status || '').toUpperCase();
-  
-  let bg = 'bg-slate-800 text-slate-300 border-slate-700';
-  let dot = 'bg-slate-400';
 
-  if (['NORMAL', 'OPTIMAL', 'HEALTHY', 'ONLINE', 'OPERATIONAL', 'LOW'].includes(norm)) {
-    bg = 'bg-emerald-950/60 text-emerald-400 border-emerald-500/30';
-    dot = 'bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]';
-  } else if (['WARNING', 'SUSPICIOUS', 'MEDIUM', 'ACTION_RECOMMENDED'].includes(norm)) {
-    bg = 'bg-amber-950/60 text-amber-400 border-amber-500/30';
-    dot = 'bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]';
-  } else if (['ANOMALOUS', 'CRITICAL', 'HIGH', 'ERROR', 'ALERT', 'FAIL'].includes(norm)) {
-    bg = 'bg-rose-950/60 text-rose-400 border-rose-500/30';
-    dot = 'bg-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.8)]';
-  } else if (['DEMO', 'SYNTHETIC', 'INFO'].includes(norm)) {
-    bg = 'bg-cyan-950/60 text-cyan-300 border-cyan-500/30';
-    dot = 'bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]';
+  let style = 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700';
+  let dotColor = 'bg-slate-500';
+
+  if (['NORMAL', 'OPTIMAL', 'HEALTHY', 'ONLINE', 'OPERATIONAL', 'LOW', 'CONNECTED'].includes(norm)) {
+    style = 'bg-emerald-50 text-emerald-700 border-emerald-200/80 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60';
+    dotColor = 'bg-emerald-500';
+  } else if (['WARNING', 'SUSPICIOUS', 'MEDIUM', 'ACTION_RECOMMENDED', 'MODERATE'].includes(norm)) {
+    style = 'bg-amber-50 text-amber-700 border-amber-200/80 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60';
+    dotColor = 'bg-amber-500';
+  } else if (['ANOMALOUS', 'CRITICAL', 'HIGH', 'ERROR', 'ALERT', 'FAIL', 'DISCONNECTED'].includes(norm)) {
+    style = 'bg-rose-50 text-rose-700 border-rose-200/80 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60';
+    dotColor = 'bg-rose-500';
+  } else if (['DEMO', 'SYNTHETIC', 'INFO', 'BASELINE'].includes(norm)) {
+    style = 'bg-sky-50 text-sky-700 border-sky-200/80 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800/60';
+    dotColor = 'bg-sky-500';
   }
 
-  const sizeClasses = size === 'xs' ? 'text-[10px] px-2 py-0.5' : size === 'lg' ? 'text-sm px-3.5 py-1.5' : 'text-xs px-2.5 py-1';
+  const sizeClasses =
+    size === 'xs'
+      ? 'text-[10px] px-2 py-0.5'
+      : size === 'lg'
+      ? 'text-sm px-3.5 py-1.5'
+      : 'text-xs px-2.5 py-1';
 
   return (
-    <span className={`inline-flex items-center gap-1.5 font-medium rounded-full border transition-all ${bg} ${sizeClasses}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${dot} ${pulse ? 'animate-pulse' : ''}`} />
+    <span
+      className={`inline-flex items-center gap-1.5 font-medium rounded-full border transition-colors ${style} ${sizeClasses}`}
+    >
+      <span
+        className={`w-1.5 h-1.5 rounded-full ${dotColor} ${pulse ? 'animate-pulse' : ''}`}
+      />
       <span>{status}</span>
     </span>
   );

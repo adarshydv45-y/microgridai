@@ -9,8 +9,9 @@ import { AnomalyDetection } from './pages/AnomalyDetection';
 import { Recommendations } from './pages/Recommendations';
 import { SystemInfo } from './pages/SystemInfo';
 import { AlertBanner } from './components/AlertBanner';
+import { ThemeProvider } from './context/ThemeContext';
 
-export function App() {
+function AppContent() {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -33,7 +34,7 @@ export function App() {
   const quickStats = dashboard?.current_metrics;
 
   return (
-    <div className="min-h-screen bg-dark-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-150">
       {/* Sidebar Navigation */}
       <Sidebar
         activeTab={activeTab}
@@ -65,7 +66,7 @@ export function App() {
               action={
                 <button
                   onClick={refreshAll}
-                  className="text-xs underline text-rose-300 hover:text-white"
+                  className="text-xs font-semibold underline text-rose-700 dark:text-rose-300 hover:opacity-80"
                 >
                   Retry Connection
                 </button>
@@ -77,13 +78,14 @@ export function App() {
           {loading ? (
             <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
               <div className="relative flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-dark-800 border-t-electric-cyan rounded-full animate-spin" />
-                <div className="w-6 h-6 border-2 border-dark-700 border-b-electric-emerald rounded-full animate-spin absolute" />
+                <div className="w-10 h-10 border-3 border-slate-200 dark:border-slate-800 border-t-emerald-600 dark:border-t-emerald-400 rounded-full animate-spin" />
               </div>
               <div className="text-center">
-                <p className="text-sm font-semibold text-white">Initializing MicrogridAI Intelligence...</p>
-                <p className="text-xs text-slate-400 mt-1">
-                  Loading telemetry data, model predictions, and dispatch recommendations.
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                  Loading Microgrid Intelligence...
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                  Synchronizing telemetry, machine learning forecasts, and dispatch recommendations.
                 </p>
               </div>
             </div>
@@ -139,20 +141,28 @@ export function App() {
         </main>
 
         {/* Global Footer */}
-        <footer className="border-t border-dark-800/80 py-4 px-6 text-center text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
+        <footer className="border-t border-slate-200/90 dark:border-slate-800/90 py-4 px-6 text-center text-xs text-slate-500 dark:text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
           <span>
-            <strong>MicrogridAI</strong> — Smart Renewable Energy Intelligence Platform
+            <strong className="text-slate-700 dark:text-slate-300">MicrogridAI</strong> — Smart Renewable Energy Intelligence
           </span>
-          <div className="flex items-center gap-4 text-slate-400 text-[11px]">
+          <div className="flex items-center gap-3 text-[11px] text-slate-400 dark:text-slate-500">
             <span>Deterministic Seed 42 Simulation</span>
             <span>•</span>
-            <span>Google Cloud Run Ready</span>
+            <span>FastAPI &amp; React Architecture</span>
             <span>•</span>
             <span>MIT License</span>
           </div>
         </footer>
       </div>
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

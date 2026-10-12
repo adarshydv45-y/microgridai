@@ -27,27 +27,27 @@ export function Recommendations({ recommendations, dashboard }) {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-dark-900 border border-dark-750">
+      {/* 1. Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200/90 dark:border-slate-800/90 shadow-[0_1px_3px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
         <div>
           <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-electric-cyan" />
-            <h1 className="text-lg font-bold text-white tracking-tight">
+            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
               Smart Energy Dispatch Recommendations
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Deterministic rule-based optimization engine computing electrochemical storage dispatch and peak load shifting.
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Physics-constrained optimization engine computing battery storage dispatch, peak shaving, and tariff arbitrage.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-dark-950 px-3 py-1.5 rounded-lg border border-dark-750 text-xs text-slate-300">
-          <Clock className="w-4 h-4 text-electric-cyan" />
-          <span>Last Calculated: {recommendations?.timestamp || 'Just now'}</span>
+        <div className="flex items-center gap-2 bg-slate-50 dark:bg-[#151F30] px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 font-mono">
+          <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <span>Calculated: {recommendations?.timestamp || 'Just now'}</span>
         </div>
       </div>
 
-      {/* Summary KPI Cards */}
+      {/* 2. Summary KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <MetricCard
           title="System Dispatch Status"
@@ -81,11 +81,16 @@ export function Recommendations({ recommendations, dashboard }) {
         />
       </div>
 
-      {/* Recommendations Feed */}
+      {/* 3. Operational Directives Operations Panel */}
       <div className="space-y-4">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-          Calculated Actionable Directives ({recList.length})
-        </h2>
+        <div className="flex items-center justify-between pb-1 border-b border-slate-200 dark:border-slate-800">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Calculated Actionable Directives ({recList.length})
+          </h2>
+          <span className="text-[11px] text-slate-400 dark:text-slate-500">
+            Real-time rule precedence execution
+          </span>
+        </div>
 
         {recList.length > 0 ? (
           recList.map((rec) => {
@@ -95,28 +100,32 @@ export function Recommendations({ recommendations, dashboard }) {
             return (
               <div
                 key={rec.id}
-                className={`p-5 rounded-xl bg-dark-900 border transition-all ${
+                className={`p-5 rounded-xl bg-white dark:bg-[#111827] border transition-all shadow-[0_1px_3px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.2)] ${
                   isHigh
-                    ? 'border-electric-cyan/40 shadow-[0_0_20px_-5px_rgba(6,182,212,0.15)]'
+                    ? 'border-emerald-300 dark:border-emerald-700/80'
                     : isMedium
-                    ? 'border-dark-700 hover:border-dark-600'
-                    : 'border-dark-800'
+                    ? 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                    : 'border-slate-200 dark:border-slate-800'
                 }`}
               >
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-dark-800 pb-3.5">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-3.5">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-dark-950 text-electric-cyan border border-dark-750 font-bold">
+                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-[#151F30] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 font-bold">
                         {rec.id}
                       </span>
-                      <h3 className="text-sm font-bold text-white tracking-tight">{rec.title}</h3>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
+                        {rec.title}
+                      </h3>
                     </div>
-                    <span className="text-xs font-medium text-slate-400 block">{rec.reasoning}</span>
+                    <span className="text-xs font-medium text-slate-600 dark:text-slate-400 block">
+                      {rec.reasoning}
+                    </span>
                   </div>
 
                   <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2 flex-shrink-0">
                     <StatusBadge status={rec.priority} size="xs" />
-                    <span className="text-[11px] font-mono text-emerald-400 font-medium">
+                    <span className="text-[11px] font-mono font-semibold text-emerald-700 dark:text-emerald-400">
                       {rec.impact_estimate}
                     </span>
                   </div>
@@ -125,12 +134,12 @@ export function Recommendations({ recommendations, dashboard }) {
                 {/* Mathematical Formulation Rationale */}
                 <div className="mt-3.5 space-y-2">
                   <div className="flex items-start gap-2 text-xs">
-                    <Calculator className="w-4 h-4 text-electric-cyan flex-shrink-0 mt-0.5" />
+                    <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                     <div className="w-full">
-                      <span className="text-slate-400 font-semibold block text-[11px]">
-                        Mathematical Basis & Constraint Evaluation:
+                      <span className="text-slate-500 dark:text-slate-400 font-semibold block text-[11px]">
+                        Mathematical Basis &amp; Constraint Evaluation:
                       </span>
-                      <div className="mt-1 p-2.5 rounded-lg bg-dark-950 border border-dark-800 font-mono text-[11px] text-cyan-300 overflow-x-auto">
+                      <div className="mt-1 p-2.5 rounded-lg bg-slate-50 dark:bg-[#151F30] border border-slate-200/80 dark:border-slate-800/80 font-mono text-[11px] text-slate-800 dark:text-slate-200 overflow-x-auto">
                         {rec.mathematical_basis}
                       </div>
                     </div>
@@ -140,29 +149,31 @@ export function Recommendations({ recommendations, dashboard }) {
             );
           })
         ) : (
-          <div className="p-8 text-center rounded-xl bg-dark-900 border border-dark-800 text-slate-400 text-sm">
+          <div className="p-8 text-center rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 text-slate-500 text-sm">
             All microgrid circuits operating within balanced equilibrium. No dispatch adjustments needed.
           </div>
         )}
       </div>
 
-      {/* Interactive Microgrid Limits Simulation Card */}
-      <div className="p-5 rounded-xl bg-dark-850 border border-dark-750 shadow-card-dark">
-        <div className="flex items-center gap-2 mb-3">
-          <Sliders className="w-4 h-4 text-electric-cyan" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+      {/* 4. Interactive Microgrid Limits Simulation Card */}
+      <div className="p-5 rounded-xl bg-slate-50 dark:bg-[#131C2E] border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="flex items-center gap-2 mb-2">
+          <Sliders className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
             Microgrid Battery Threshold Configuration
           </h3>
         </div>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
           Simulation limits applied by the recommendation engine. Changing these limits enforces strict protection against overcharging and deep-discharge cell degradation.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-          <div>
-            <div className="flex justify-between mb-1.5 font-semibold text-slate-300">
+          <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex justify-between font-semibold text-slate-800 dark:text-slate-200">
               <span>Total Battery Capacity</span>
-              <span className="font-mono text-electric-cyan">{customParams.batteryCapacity} kWh</span>
+              <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">
+                {customParams.batteryCapacity} kWh
+              </span>
             </div>
             <input
               type="range"
@@ -170,16 +181,22 @@ export function Recommendations({ recommendations, dashboard }) {
               max="150"
               step="5"
               value={customParams.batteryCapacity}
-              onChange={(e) => setCustomParams({ ...customParams, batteryCapacity: Number(e.target.value) })}
-              className="w-full accent-electric-cyan"
+              onChange={(e) =>
+                setCustomParams({ ...customParams, batteryCapacity: Number(e.target.value) })
+              }
+              className="w-full accent-emerald-600"
             />
-            <span className="text-[10px] text-slate-500 mt-1 block">Configured rating: 60.0 kWh nominal</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-500 block">
+              Configured rating: 60.0 kWh nominal
+            </span>
           </div>
 
-          <div>
-            <div className="flex justify-between mb-1.5 font-semibold text-slate-300">
-              <span>Minimum Reserve Cutoff (SoC_min)</span>
-              <span className="font-mono text-rose-400">{customParams.minSocLimit}%</span>
+          <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex justify-between font-semibold text-slate-800 dark:text-slate-200">
+              <span>Minimum Cutoff (SoC_min)</span>
+              <span className="font-mono text-rose-700 dark:text-rose-400 font-bold">
+                {customParams.minSocLimit}%
+              </span>
             </div>
             <input
               type="range"
@@ -187,16 +204,22 @@ export function Recommendations({ recommendations, dashboard }) {
               max="35"
               step="1"
               value={customParams.minSocLimit}
-              onChange={(e) => setCustomParams({ ...customParams, minSocLimit: Number(e.target.value) })}
-              className="w-full accent-rose-500"
+              onChange={(e) =>
+                setCustomParams({ ...customParams, minSocLimit: Number(e.target.value) })
+              }
+              className="w-full accent-rose-600"
             />
-            <span className="text-[10px] text-slate-500 mt-1 block">Inhibits discharge below this safety threshold</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-500 block">
+              Inhibits discharge below this safety threshold
+            </span>
           </div>
 
-          <div>
-            <div className="flex justify-between mb-1.5 font-semibold text-slate-300">
-              <span>Maximum Charge Ceiling (SoC_max)</span>
-              <span className="font-mono text-emerald-400">{customParams.maxSocLimit}%</span>
+          <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex justify-between font-semibold text-slate-800 dark:text-slate-200">
+              <span>Maximum Ceiling (SoC_max)</span>
+              <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">
+                {customParams.maxSocLimit}%
+              </span>
             </div>
             <input
               type="range"
@@ -204,10 +227,14 @@ export function Recommendations({ recommendations, dashboard }) {
               max="100"
               step="1"
               value={customParams.maxSocLimit}
-              onChange={(e) => setCustomParams({ ...customParams, maxSocLimit: Number(e.target.value) })}
-              className="w-full accent-emerald-500"
+              onChange={(e) =>
+                setCustomParams({ ...customParams, maxSocLimit: Number(e.target.value) })
+              }
+              className="w-full accent-emerald-600"
             />
-            <span className="text-[10px] text-slate-500 mt-1 block">Prevents overvoltage and forces grid export above ceiling</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-500 block">
+              Prevents overvoltage and forces grid export above ceiling
+            </span>
           </div>
         </div>
       </div>

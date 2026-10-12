@@ -1,55 +1,73 @@
 import React from 'react';
 
-export function Logo({ size = 36, showText = true }) {
+export function Logo({ size = 32, showText = true }) {
   return (
-    <div className="flex items-center gap-3 select-none">
-      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div className="flex items-center gap-2.5 select-none">
+      <div
+        className="relative flex items-center justify-center flex-shrink-0"
+        style={{ width: size, height: size }}
+      >
         <svg
-          viewBox="0 0 48 48"
+          viewBox="0 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-[0_0_12px_rgba(6,182,212,0.45)]"
+          className="w-full h-full"
         >
-          {/* Outer Hexagon Shield */}
-          <polygon
-            points="24,3 43,14 43,34 24,45 5,34 5,14"
-            className="fill-dark-900 stroke-dark-600"
+          {/* Rounded Hexagonal Base */}
+          <rect
+            x="2"
+            y="2"
+            width="32"
+            height="32"
+            rx="8"
+            className="fill-emerald-50 dark:fill-emerald-950/40 stroke-emerald-600/30 dark:stroke-emerald-500/30"
             strokeWidth="1.5"
           />
-          {/* Glowing Hexagon Border */}
-          <polygon
-            points="24,6 40,15.5 40,32.5 24,42 8,32.5 8,15.5"
-            className="stroke-electric-cyan"
-            strokeWidth="2"
-            strokeDasharray="4 2"
-          />
-          {/* Microgrid Nodes and Grid Lines */}
-          <circle cx="24" cy="14" r="2.5" className="fill-electric-emerald" />
-          <circle cx="15" cy="30" r="2.5" className="fill-electric-cyan" />
-          <circle cx="33" cy="30" r="2.5" className="fill-electric-green" />
-          
-          <line x1="24" y1="14" x2="15" y2="30" className="stroke-slate-600" strokeWidth="1.5" />
-          <line x1="24" y1="14" x2="33" y2="30" className="stroke-slate-600" strokeWidth="1.5" />
-          <line x1="15" y1="30" x2="33" y2="30" className="stroke-slate-600" strokeWidth="1.5" />
 
-          {/* Central Energy Lightning Bolt */}
+          {/* Microgrid Interconnection Paths */}
           <path
-            d="M25 11L18 24H24L22 36L30 22H24L25 11Z"
-            className="fill-electric-emerald drop-shadow-[0_0_6px_rgba(16,185,129,0.8)]"
+            d="M10 18H26M18 10V26"
+            className="stroke-slate-300 dark:stroke-slate-700"
+            strokeWidth="1.5"
+            strokeDasharray="2 2"
+          />
+
+          {/* Central Energy Hub */}
+          <circle
+            cx="18"
+            cy="18"
+            r="3.5"
+            className="fill-emerald-600 dark:fill-emerald-400"
+          />
+
+          {/* Asset Telemetry Nodes (Solar, Battery, Grid, Load) */}
+          <circle cx="18" cy="8" r="2" className="fill-amber-500 dark:fill-amber-400" />
+          <circle cx="28" cy="18" r="2" className="fill-blue-500 dark:fill-blue-400" />
+          <circle cx="18" cy="28" r="2" className="fill-emerald-500 dark:fill-emerald-400" />
+          <circle cx="8" cy="18" r="2" className="fill-slate-500 dark:fill-slate-400" />
+
+          {/* Dynamic Arc Flow */}
+          <path
+            d="M18 12C21.3137 12 24 14.6863 24 18"
+            className="stroke-emerald-600 dark:stroke-emerald-400"
+            strokeWidth="2"
+            strokeLinecap="round"
           />
         </svg>
       </div>
 
       {showText && (
-        <div className="flex flex-col">
-          <div className="flex items-center gap-1.5 font-bold tracking-tight text-lg text-white">
-            <span>Microgrid</span>
-            <span className="text-electric-cyan font-black bg-gradient-to-r from-electric-cyan to-electric-emerald bg-clip-text text-transparent">
+        <div className="flex flex-col leading-tight">
+          <div className="flex items-center gap-1">
+            <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">
+              Microgrid
+            </span>
+            <span className="font-extrabold text-base tracking-tight text-emerald-600 dark:text-emerald-400">
               AI
             </span>
           </div>
-          <span className="text-[10px] uppercase tracking-widest font-semibold text-slate-400">
-            Renewable Intelligence
+          <span className="text-[10px] tracking-wider uppercase font-medium text-slate-500 dark:text-slate-400">
+            Smart Renewable Energy Intelligence
           </span>
         </div>
       )}
