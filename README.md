@@ -11,12 +11,16 @@ pinned: false
 
 > **AI-Powered Renewable Microgrid Monitoring, 24-Hour Horizon Forecasting, Isolation Forest Anomaly Detection, and Storage Dispatch Management.**
 
+[![Live Demo: Vercel](https://img.shields.io/badge/Live%20Demo-microgridadai.vercel.app-emerald?style=for-the-badge&logo=vercel)](https://microgridadai.vercel.app/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/adarshydv45-y/microgridai)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Python: 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)](https://fastapi.tiangolo.com/)
 [![React: 18](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38BDF8.svg)](https://tailwindcss.com/)
-[![Google Cloud Run](https://img.shields.io/badge/Cloud%20Run-Ready-4285F4.svg)](https://cloud.google.com/run)
+
+🔗 **Live Public Application:** [https://microgridadai.vercel.app/](https://microgridadai.vercel.app/)
 
 ---
 
