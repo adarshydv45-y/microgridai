@@ -2,7 +2,10 @@
   "name": "microgridai",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
-    "build": "node -e \"const {execSync}=require('child_process'); try { process.chdir('frontend'); } catch(e){} execSync('npm run build', {stdio:'inherit'});\""
+    "build": "npm run build --workspace=frontend"
   }
 }
