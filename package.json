@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd frontend && npm install && npm run build"
+    "build": "node -e \"const {execSync}=require('child_process'); try { process.chdir('frontend'); } catch(e){} execSync('npm run build', {stdio:'inherit'});\""
   }
 }
