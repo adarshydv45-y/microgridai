@@ -11,7 +11,7 @@ pinned: false
 
 > **AI-Powered Renewable Microgrid Monitoring, 24-Hour Horizon Forecasting, Isolation Forest Anomaly Detection, and Storage Dispatch Management.**
 
-[![Live Demo: Vercel](https://img.shields.io/badge/Live%20Demo-microgridadai.vercel.app-emerald?style=for-the-badge&logo=vercel)](https://microgridadai.vercel.app/)
+[![Live Demo: Render](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render)](https://microgridai.onrender.com)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/adarshydv45-y/microgridai)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
@@ -20,7 +20,7 @@ pinned: false
 [![React: 18](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38BDF8.svg)](https://tailwindcss.com/)
 
-🔗 **Live Public Application:** [https://microgridadai.vercel.app/](https://microgridadai.vercel.app/)
+🔗 **Live Public Application:** [https://microgridai.onrender.com](https://microgridai.onrender.com)
 
 ---
 
@@ -33,7 +33,7 @@ pinned: false
 * **Multi-Horizon AI Forecasting:** 24-hour ahead regression models (`HistGradientBoostingRegressor`) predicting solar output and demand loads to optimize self-consumption.
 * **Unsupervised Anomaly Detection:** An `Isolation Forest` model identifying equipment failures (e.g., solar inverter trips, sudden load spikes, and thermal overrun).
 * **Smart Storage Dispatch Engine:** Rule-based optimization calculating battery charge and discharge setpoints respecting safe depth-of-discharge (15%–95% SoC) constraints.
-* **Single-Container Deployment:** Packaged as a unified multi-stage container serving the FastAPI REST API and compiled React SPA from one Google Cloud Run service.
+* **Containerized Deployment:** Packaged for container-based deployment, with the live application currently hosted on Render.
 
 ---
 
@@ -89,7 +89,7 @@ flowchart TD
 | **Backend** | Python 3.11+, FastAPI, Uvicorn, Pydantic v2, Pandas, NumPy |
 | **Machine Learning** | Scikit-learn (`HistGradientBoostingRegressor`, `IsolationForest`), Joblib |
 | **Data Handling** | Deterministic diurnal solar simulator, numerical trapezoidal kWh integration |
-| **DevOps & Cloud** | Multi-stage Docker, Google Cloud Run, Google Cloud Build |
+| **DevOps & Cloud** | Multi-stage Docker, Render, Google Cloud Run, Google Cloud Build |
 
 ---
 
@@ -200,9 +200,16 @@ start http://localhost:8080
 
 ---
 
-## 8. Google Cloud Run Deployment Guide
+## 8. Deployment
 
-MicrogridAI is built to deploy seamlessly as a single serverless container on **Google Cloud Run**.
+**Current live deployment:** [https://microgridai.onrender.com](https://microgridai.onrender.com)  
+**API health check:** [https://microgridai.onrender.com/api/health](https://microgridai.onrender.com/api/health)
+
+The health endpoint has returned a healthy status with the models-loaded flag set to `true`. The application is currently hosted on Render.
+
+### Optional: Google Cloud Run Deployment Guide
+
+MicrogridAI also includes configuration intended for deployment as a container on **Google Cloud Run**.
 
 ### Step 1: Install & Initialize Google Cloud CLI
 If the `gcloud` CLI is not installed, download the [Google Cloud CLI Installer](https://cloud.google.com/sdk/docs/install-windows).
@@ -255,7 +262,7 @@ curl https://microgridai-xxxxxx-uc.a.run.app/api/health
 
 ## 9. Git Repository Initialization
 
-Follow these exact commands to commit and connect your own GitHub repository:
+For reference only: these are generic commands for initializing and connecting a local Git repository. The project already has a GitHub repository, so do not rerun these commands unless you specifically need to reconfigure Git:
 
 ```powershell
 cd d:\6ab10eb3b23ba_student_resource\microgridai
